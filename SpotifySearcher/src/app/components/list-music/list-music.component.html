@@ -1,0 +1,9 @@
+<div *ngIf="results.length > 0" class="result-list">
+  <div *ngFor="let track of results" class="result-item" (click)="handleClick(track)">
+    <img [src]="track.album.images[0]?.url" alt="cover" class="cover" />
+    <div class="info">
+      <h4 class="title">{{ track.name }}</h4>
+      <p class="artist">By {{ track.artists[0]?.name }}</p>
+    </div>
+  </div>
+</div>

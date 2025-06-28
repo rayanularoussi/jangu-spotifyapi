@@ -1,0 +1,62 @@
+<div class="search-wrapper">
+  <div class="search-content">
+    <div class="search-bar-container">
+      <input
+        type="text"
+        class="search-input"
+        [formControl]="searchControl"
+        placeholder="Search for a music or an artist..."
+      />
+      <button class="search-button" (click)="onSearchClick()">Search</button>
+    </div>
+
+    <div class="filters-container" *ngIf="showFilters">
+      <h1>Filters</h1>
+      <div>
+      <select
+        class="album-dropdown"
+        [(ngModel)]="selectedAlbum"
+        (change)="onAlbumSelected()"
+      >
+        <option value="">-- Filter by album --</option>
+        <option *ngFor="let album of albums" [value]="album">{{ album }}</option>
+      </select>
+      </div>
+    <div class="date-container">
+      <a>Start Date</a>
+      <input class="date-input"
+        type="date"
+        [(ngModel)]="startDate"
+        (change)="onDateFilterChanged()"
+      />
+      <a>End Date</a>
+      <input class="date-input"
+        type="date"
+        [(ngModel)]="endDate"
+        (change)="onDateFilterChanged()"
+      />
+    </div>
+
+    </div>
+
+
+
+    <button class="activate-filters-button" (click)="onFiltersShow()">
+      Filters
+    </button>
+
+
+
+    <app-list-music
+      [results]="filteredTrack"
+      (selectTrack)="onTrackSelected($event)"
+      class="list-items"
+    ></app-list-music>
+  </div>
+
+  <app-music-details
+    *ngIf="selectedTrack"
+    [track]="selectedTrack"
+    class="details-panel"
+  ></app-music-details>
+</div>

@@ -1,0 +1,16 @@
+<div *ngIf="track">
+  <h2>{{ track.name }}</h2>
+  <img [src]="track.album.images[0].url" alt="Album cover" width="200" />
+  <p class="ascii-wave">__________________________________</p>
+  <h1><strong>TITLE :</strong></h1>
+  <p>{{ track.name }}</p>
+  <h1><strong>ALBUM :</strong></h1>
+  <p>{{ track.album.name }}</p>
+  <h1><strong>ARTISTS :</strong></h1>
+    <li *ngFor="let artist of track.artists">
+      <a class="artists" [href]="artist.external_urls.spotify" target="_blank">{{ artist.name }}</a>
+    </li>
+  <h1><strong>RELEASE DATE :</strong></h1>
+  <p>{{ track.album.release_date }}</p>
+  <h1><strong>DURATION :</strong></h1> <p>{{ durationConverter(track.duration_ms) }}</p>
+</div>
